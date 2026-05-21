@@ -88,6 +88,6 @@ def predict(news: NewsRequest):
     confidence = model.decision_function(vectorized_text)[0]
 
     return {
-    "prediction": "FAKE" if prediction == 1 else "FAKE",
+    "prediction": "REAL" if prediction == 1 else "FAKE",
     "confidence": round(abs(confidence) * 10, 2)
 }
