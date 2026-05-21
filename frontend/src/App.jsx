@@ -18,7 +18,7 @@ function App() {
     try {
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/predict",
+        "https://truthlens-giil.onrender.com/predict",
         {
           text: news
         }
