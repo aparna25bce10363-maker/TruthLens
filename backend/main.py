@@ -6,15 +6,9 @@ import joblib
 import re
 import string
 
-# =========================
-# CREATE FASTAPI APP
-# =========================
+
 
 app = FastAPI()
-
-# =========================
-# ENABLE CORS
-# =========================
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,24 +18,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# =========================
-# LOAD TRAINED MODEL
-# =========================
 
 model = joblib.load("model.pkl")
 
 vectorizer = joblib.load("vectorizer.pkl")
 
-# =========================
-# REQUEST FORMAT
-# =========================
 
 class NewsRequest(BaseModel):
     text: str
 
-# =========================
-# TEXT CLEANING FUNCTION
-# =========================
+
 
 def clean_text(text):
 
@@ -61,9 +47,7 @@ def clean_text(text):
 
     return text
 
-# =========================
-# HOME ROUTE
-# =========================
+
 
 @app.get("/")
 def home():
@@ -72,9 +56,6 @@ def home():
         "message": "TruthLens AI Backend Running"
     }
 
-# =========================
-# PREDICTION ROUTE
-# =========================
 
 @app.post("/predict")
 def predict(news: NewsRequest):
